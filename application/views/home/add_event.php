@@ -147,58 +147,74 @@ $ticketEvents = array(
                                 <div class="radio-group price-mode-group">
                                     <label class="radio-option">
                                         <input type="radio" name="eventRolePricing" value="no" checked>
-                                        <span>Not by role</span>
-                                        <span class="radio-hint">One price for all</span>
+                                        <span>One price</span>
                                     </label>
                                     <label class="radio-option">
                                         <input type="radio" name="eventRolePricing" value="yes">
-                                        <span>By role</span>
-                                        <span class="radio-hint">Guest · Student · Member</span>
+                                        <span>Each price</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="price-mode-step">
-                                <span class="price-mode-label">How many prices?</span>
+                                <span class="price-mode-label">Ticket Type</span>
                                 <div class="radio-group price-mode-group">
                                     <label class="radio-option">
                                         <input type="radio" name="eventPriceType" value="single" checked>
-                                        <span>1 Cost</span>
-                                        <span class="radio-hint">Single price</span>
+                                        <span>Single Ticket</span>
                                     </label>
                                     <label class="radio-option">
                                         <input type="radio" name="eventPriceType" value="tiers">
-                                        <span>2 Costs</span>
-                                        <span class="radio-hint">Early + Late</span>
+                                        <span>Early + Late</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="input-wrapper" id="singlePriceField"><?php echo $i_dollar; ?>
-                            <input type="number" id="eventPrice" name="eventPrice" min="0" step="0.01" placeholder="Price per ticket">
+                        <div class="price-tiers" id="singlePriceField">
+                            <div class="price-tier">
+                                <div class="price-tier-title">Ticket Price</div>
+                                <div class="form-group">
+                                    <label for="eventPrice">Price ($)</label>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="eventPrice" name="eventPrice" min="0" step="0.01" placeholder="Price per ticket">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventPriceDate">Valid until</label>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="eventPriceDate" name="eventPriceDate">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="price-tiers" id="singleRolePrices" style="display:none;">
                             <div class="price-tier">
                                 <div class="price-tier-title">Ticket Price</div>
-                                <div class="role-prices">
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Guest</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="priceGuest" name="guestPrice" min="0" step="0.01" placeholder="Price">
-                                        </div>
+                                <div class="role-prices role-prices-dates">
+                                    <span class="role-price-head">role</span>
+                                    <span class="role-price-head">price</span>
+                                    <span class="role-price-head role-price-head-date">Valid until</span>
+                                    <span class="role-price-label">Guest</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="priceGuest" name="guestPrice" min="0" step="0.01" placeholder="Price">
                                     </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Student</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="priceStudent" name="studentPrice" min="0" step="0.01" placeholder="Price">
-                                        </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="priceGuestDate" name="priceGuestDate">
                                     </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Member</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="priceMember" name="memberPrice" min="0" step="0.01" placeholder="Price">
-                                        </div>
+                                    <span class="role-price-label">Student</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="priceStudent" name="studentPrice" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="priceStudentDate" name="priceStudentDate">
+                                    </div>
+                                    <span class="role-price-label">Member</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="priceMember" name="memberPrice" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="priceMemberDate" name="priceMemberDate">
                                     </div>
                                 </div>
                             </div>
@@ -206,9 +222,9 @@ $ticketEvents = array(
 
                         <div class="price-tiers" id="fixedTiersField" style="display:none;">
                             <div class="price-tier">
-                                <div class="price-tier-title">Early Cost</div>
+                                <div class="price-tier-title">Early Ticket Price</div>
                                 <div class="form-group">
-                                    <label for="earlyPrice">Early Price ($)</label>
+                                    <label for="earlyPrice">Price ($)</label>
                                     <div class="input-wrapper"><?php echo $i_dollar; ?>
                                         <input type="number" id="earlyPrice" name="earlyPrice" min="0" step="0.01" placeholder="Early price">
                                     </div>
@@ -221,7 +237,7 @@ $ticketEvents = array(
                                 </div>
                             </div>
                             <div class="price-tier">
-                                <div class="price-tier-title">Late Cost</div>
+                                <div class="price-tier-title">Late Ticket</div>
                                 <div class="form-group">
                                     <label for="latePrice">Late Price ($)</label>
                                     <div class="input-wrapper"><?php echo $i_dollar; ?>
@@ -239,60 +255,60 @@ $ticketEvents = array(
 
                         <div class="price-tiers" id="roleTiersField" style="display:none;">
                             <div class="price-tier">
-                                <div class="price-tier-title">Early Cost</div>
-                                <div class="role-prices">
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Guest</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="earlyGuest" name="earlyGuest" min="0" step="0.01" placeholder="Price">
-                                        </div>
+                                <div class="price-tier-title">Early Ticket</div>
+                                <div class="role-prices role-prices-dates">
+                                    <span class="role-price-head">role</span>
+                                    <span class="role-price-head">price</span>
+                                    <span class="role-price-head role-price-head-date">Valid until</span>
+                                    <span class="role-price-label">Guest</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="earlyGuest" name="earlyGuest" min="0" step="0.01" placeholder="Price">
                                     </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Student</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="earlyStudent" name="earlyStudent" min="0" step="0.01" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Member</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="earlyMember" name="earlyMember" min="0" step="0.01" placeholder="Price">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="roleEarlyDate">Valid until</label>
                                     <div class="input-wrapper"><?php echo $i_cal; ?>
-                                        <input type="date" id="roleEarlyDate" name="roleEarlyDate">
+                                        <input type="date" id="earlyGuestDate" name="earlyGuestDate">
+                                    </div>
+                                    <span class="role-price-label">Student</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="earlyStudent" name="earlyStudent" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="earlyStudentDate" name="earlyStudentDate">
+                                    </div>
+                                    <span class="role-price-label">Member</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="earlyMember" name="earlyMember" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="earlyMemberDate" name="earlyMemberDate">
                                     </div>
                                 </div>
                             </div>
                             <div class="price-tier">
-                                <div class="price-tier-title">Late Cost</div>
-                                <div class="role-prices">
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Guest</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="lateGuest" name="lateGuest" min="0" step="0.01" placeholder="Price">
-                                        </div>
+                                <div class="price-tier-title">Late Ticket</div>
+                                <div class="role-prices role-prices-dates">
+                                    <span class="role-price-head">role</span>
+                                    <span class="role-price-head">price</span>
+                                    <span class="role-price-head role-price-head-date">Valid until</span>
+                                    <span class="role-price-label">Guest</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="lateGuest" name="lateGuest" min="0" step="0.01" placeholder="Price">
                                     </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Student</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="lateStudent" name="lateStudent" min="0" step="0.01" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="role-price-row">
-                                        <span class="role-price-label">Member</span>
-                                        <div class="input-wrapper"><?php echo $i_dollar; ?>
-                                            <input type="number" id="lateMember" name="lateMember" min="0" step="0.01" placeholder="Price">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="roleLateDate">Valid until</label>
                                     <div class="input-wrapper"><?php echo $i_cal; ?>
-                                        <input type="date" id="roleLateDate" name="roleLateDate">
+                                        <input type="date" id="lateGuestDate" name="lateGuestDate">
+                                    </div>
+                                    <span class="role-price-label">Student</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="lateStudent" name="lateStudent" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="lateStudentDate" name="lateStudentDate">
+                                    </div>
+                                    <span class="role-price-label">Member</span>
+                                    <div class="input-wrapper"><?php echo $i_dollar; ?>
+                                        <input type="number" id="lateMember" name="lateMember" min="0" step="0.01" placeholder="Price">
+                                    </div>
+                                    <div class="input-wrapper"><?php echo $i_cal; ?>
+                                        <input type="date" id="lateMemberDate" name="lateMemberDate">
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +316,7 @@ $ticketEvents = array(
                     </div>
 
                     <div class="event-section">
-                        <span class="event-section-label"><span class="section-num">05</span> Ticket Required</span>
+                        <span class="event-section-label"><span class="section-num">05</span> Event Required</span>
                         <div class="radio-group">
                             <label class="radio-option">
                                 <input type="radio" name="eventRequiresTicket" value="no" checked>

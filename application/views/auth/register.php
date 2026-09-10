@@ -115,17 +115,6 @@
                     </div>
                 </div>
 
-                <div class="form-options">
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" id="terms" name="terms">
-                        <span class="checkmark"></span>
-                        <span class="terms-text">I agree to the
-                            <a href="#" class="forgot-link">Terms</a> and
-                            <a href="#" class="forgot-link">Privacy Policy</a>
-                        </span>
-                    </label>
-                </div>
-
                 <button type="submit" class="btn-login" id="btnRegister">
                     <span class="btn-text">Create Account</span>
                     <span class="btn-loader" style="display:none;">
