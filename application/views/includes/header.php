@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </svg>
             </button>
             <div class="home-nav-links" id="homeNavLinks">
-                <a href="<?php echo ($activeNav === 'browse') ? '#events' : base_url('event#events'); ?>" class="nav-link<?php echo ($activeNav === 'browse') ? ' active' : ''; ?>">
+                <a href="<?php echo ($activeNav === 'browse') ? '#events' : base_url('events'); ?>" class="nav-link<?php echo ($activeNav === 'browse') ? ' active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                     Browse Events
                 </a>
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     Add Event
                 </a>
                 <?php endif; ?>
-                <a href="<?php echo base_url('buying/my_tickets'); ?>" class="nav-link<?php echo ($activeNav === 'tickets') ? ' active' : ''; ?>">
+                <a href="<?php echo base_url('my_tickets'); ?>" class="nav-link<?php echo ($activeNav === 'tickets') ? ' active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg>
                     <?php echo ($userRole === 4) ? 'All Tickets' : 'My Tickets'; ?>
                 </a>

@@ -1,71 +1,54 @@
-###################
-What is CodeIgniter
-###################
+#############
+EventBook
+#############
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+EventBook is a web-based event ticketing system built with the
+`CodeIgniter <https://codeigniter.com>`_ PHP framework. It lets users browse
+events, register accounts, book and pay for tickets, and manage their
+purchases — all through a clean, modern interface.
 
-*******************
-Release Information
-*******************
+===========
+Features
+===========
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+-  User registration and login with secure password hashing
+-  Role-based access control (regular users and administrators)
+-  Event browsing with pricing, capacity, date and location details
+-  Ticket booking with quantity selection and multiple ticket types
+-  Payment flow with payment confirmation
+-  Personal "My Tickets" dashboard
+-  Profile editing, including password updates
+-  Responsive, mobile-friendly UI
 
-**************************
-Changelog and New Features
-**************************
+===========
+Requirements
+===========
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+-  PHP 5.6 or newer (7.x recommended)
+-  MySQL / MariaDB
+-  A web server (Apache, Nginx, etc.)
 
-*******************
-Server Requirements
-*******************
-
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
+===========
 Installation
-************
+===========
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+1. Copy the project into your web root.
+2. Create a MySQL database named ``booking_ticket``.
+3. Import the schema using the provided ``booking_ticket.sql`` file::
 
-*******
-License
-*******
+     mysql -u root -p booking_ticket < booking_ticket.sql
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+4. Open ``application/config/database.php`` and adjust the database
+   credentials if needed.
+5. Point your browser to the project URL. You will be redirected to the
+   login page, where you can register a new account and sign in.
 
-*********
-Resources
-*********
+===========
+Project Structure
+===========
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+-  ``application/controllers/`` — Auth, Event, Buying and User controllers
+-  ``application/models/`` — Event_model and User_model
+-  ``application/views/`` — HTML views including home, auth, booking and modal views
+-  ``assets/`` — CSS, JavaScript and images
+-  ``booking_ticket.sql`` — database schema and seed data

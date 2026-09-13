@@ -23,7 +23,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+if (isset($_SERVER['HTTP_HOST']))
+{
+	// Build the base URL from the actual request host so that AJAX calls stay
+	// on the same origin. Empty detection falls back to SERVER_ADDR, which can
+	// be IPv6 "::1" and cause CORS errors (http://[::1] vs http://localhost).
+	$script_dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+	$config['base_url'] = (is_https() ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$script_dir.'/';
+}
+else
+{
+	$config['base_url'] = '';
+}
 
 /*
 |--------------------------------------------------------------------------
