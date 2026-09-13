@@ -120,13 +120,11 @@ class Event extends MY_Controller {
 	{
 		$user_id = $this->session->userdata('user_id');
 		if (!$user_id) {
-			$this->output
-				->set_content_type('application/json')
-				->set_output(json_encode(array('success' => false, 'message' => 'Not logged in')));
+			redirect('login');
 			return;
 		}
 
-		$json = $this->input->raw_input_stream;
+		$json = $this->input->post('payload');
 		$data = json_decode($json, true);
 
 		$basics  = !empty($data['Basics'])         ? $data['Basics']         : array();
@@ -242,13 +240,10 @@ class Event extends MY_Controller {
 				$ticket['event_id'] = $inserted_id;
 			}
 			$this->Event_model->create_tickets($tickets);
+			redirect('home');
+		} else {
+			$this->session->set_flashdata('event_error', 'Failed to save event. Please try again.');
+			redirect('event/add_event');
 		}
-
-		$this->output
-			->set_content_type('application/json')
-			->set_output(json_encode(array(
-				'success'   => (bool) $inserted_id,
-				'event'     => $inserted_id ? $event : NULL
-			)));
 	}
 }

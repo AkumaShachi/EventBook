@@ -17,7 +17,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <p>Create your account</p>
             </div>
 
-            <form id="registerForm" class="login-form" novalidate>
+            <form id="registerForm" class="login-form" novalidate action="<?php echo site_url('auth/do_register'); ?>" method="post">
+                <?php if ($this->session->flashdata('register_error')): ?>
+                    <div class="alert alert-danger"><?php echo $this->session->flashdata('register_error'); ?></div>
+                <?php endif; ?>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name</label>

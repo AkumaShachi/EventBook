@@ -11,7 +11,10 @@ $i_pin = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox
             </div>
 
             <div class="login-card add-event-card">
-                <form id="addEventForm" class="login-form" novalidate data-add-url="<?php echo site_url('event/do_add_event'); ?>">
+                <form id="addEventForm" class="login-form" novalidate action="<?php echo site_url('event/do_add_event'); ?>" method="post" data-add-url="<?php echo site_url('event/do_add_event'); ?>">
+                    <?php if ($this->session->flashdata('event_error')): ?>
+                        <div class="alert alert-danger"><?php echo $this->session->flashdata('event_error'); ?></div>
+                    <?php endif; ?>
 
                     <div class="event-section">
                         <span class="event-section-label"><span class="section-num">01</span> Basics</span>

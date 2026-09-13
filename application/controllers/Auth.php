@@ -40,11 +40,14 @@ class Auth extends MY_Controller {
 			'password'    => $this->input->post('password')
 		);
 
-		echo '<pre>';
-		print_r($data);
-		echo '</pre>';
+		$result = $this->User_model->create_user($data);
 
-		$this->User_model->create_user($data);
+		if ($result) {
+			redirect('login');
+		} else {
+			$this->session->set_flashdata('register_error', 'Registration failed. Please try again.');
+			redirect('register');
+		}
 	}
 
 	public function do_login()

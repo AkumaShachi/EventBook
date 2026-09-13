@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
     var BASE = (typeof BASE_URL !== 'undefined') ? BASE_URL : '';
     function getURL(path) {
         return BASE + path;
@@ -265,25 +265,9 @@ $(function () {
             $btnRegister.find('.btn-text').css('display', 'none');
             $btnRegister.find('.btn-loader').css('display', 'inline-flex');
 
-            // Build payload and send to the controller
-            var data = {};
-            $registerForm.find('input').each(function () {
-                var $i = $(this);
-                data[$i.attr('name') || $i.attr('id')] = $i.val();
-            });
-            data.password = await hashPassword(data.confirmPassword);
-
-            $.ajax({
-                url: getURL('auth/do_register'),
-                method: 'POST',
-                data: data,
-                success: function (res) {
-                    $btnRegister.prop('disabled', false);
-                    $btnRegister.find('.btn-text').css('display', 'inline');
-                    $btnRegister.find('.btn-loader').css('display', 'none');
-                    console.log(res);
-                }
-            });
+            // Hash the password and submit the form normally (server redirects)
+            $('#password').val(await hashPassword($('#confirmPassword').val()));
+            $registerForm[0].submit();
         });
     }
 
@@ -1250,20 +1234,13 @@ $(function () {
 
             console.log('addEvent payload:', addEventAll);
 
-            var addUrl = $addEventForm.data('add-url');
-            $.ajax({
-                url: addUrl,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(addEventAll),
-                dataType: 'json',
-                success: function (res) {
-                    console.log('do_add_event response:', res);
-                },
-                error: function (xhr, status, err) {
-                    console.log('do_add_event error:', status, err, xhr.responseText);
-                }
-            });
+            var $payload = $('#addEventPayload');
+            if (!$payload.length) {
+                $payload = $('<input type="hidden" name="payload" id="addEventPayload">');
+                $addEventForm.append($payload);
+            }
+            $payload.val(JSON.stringify(addEventAll));
+            $addEventForm[0].submit();
         });
     }
 });

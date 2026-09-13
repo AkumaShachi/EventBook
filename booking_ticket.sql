@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 13/09/2026 16:05:44
+ Date: 13/09/2026 16:57:13
 */
 
 SET NAMES utf8mb4;
@@ -150,15 +150,16 @@ CREATE TABLE `users`  (
   `r_id` int NOT NULL,
   `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'a', 'a', '$2y$10$5V2otHtwn3Q9R.f0hKokceLKJGdU9W9vkoJrmtSqc.8XHMIhCTYSy', '111', NULL, 'a@aa.aaa', NULL, NULL, 1, NULL);
 INSERT INTO `users` VALUES (2, 'b', 'b', '$2y$10$r5ljgdXYHe620ojhRKDukecu.IDTj5UZoKKX9fUwenW7R.O/z8Pkq', '88888888888', '88888888888', 'b@bb.bbb', 'b@bb.bbb', NULL, 1, NULL);
 INSERT INTO `users` VALUES (3, 'c', 'c', '$2y$10$ouHKcOpGyYgLLC3nPi64pe5q2R.n6kQMFh6eM8HlQOw3HjoHGFf5C', '2222222222', '2222222222', 'c@cc.ccc', 'c@cc.ccc', 'assets/institution/inst_3_1789239091.png', 2, NULL);
 INSERT INTO `users` VALUES (4, 'd', 'd', '$2y$10$GGYDgxfF.89Ar5nblGp/MuB9wPKO8AoWVuOWnIDZYsiTToZGyiJqm', '000000000', '000000000', 'd@dd.ddd', 'd@dd.ddd', 'assets/institution/inst_4_1789273757.png', 3, NULL);
 INSERT INTO `users` VALUES (5, 'e', 'e', '$2y$10$7aze3mbUJzMB2X6UfgySzeVO..aW0Q8ASKhrCQEddqrmX3rxtXVu2', '123', NULL, 'e@ee.eee', NULL, NULL, 4, NULL);
+INSERT INTO `users` VALUES (6, 'f', 'f', '$2y$10$BybXVWM3kyfLlnhlzh77NuFNPkg/aLO4glyE4yT9JvmZWmyQzl3GS', '', NULL, 'f@ff.fff', NULL, NULL, 0, NULL);
+INSERT INTO `users` VALUES (7, 'g', 'g', '$2y$10$tU5zdN3qcIBzkw8Q2gkGAOR/hq8PAwSGtUEeY5zoKTL2LvIJccSUa', '', NULL, 'g@gg.ggg', NULL, NULL, 1, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
